@@ -1,0 +1,47 @@
+answer_layer: bilinear
+batch_size: 64
+clip_value: 0.0
+config: conf/qa/squad/fastqa.yaml
+debug: false
+debug_examples: 10
+description: 'FastQA configuration to train model on SQuAD as described in https://arxiv.org/abs/1703.04816.
+
+  '
+dev: data/SQuAD/dev-v1.1.json
+dev_batch_size: null
+dropout: 0.2
+embedding_file: data/GloVe/glove.840B.300d.memory_map_dir
+embedding_format: memory_map_dir
+encoder: lstm
+epochs: 20
+file_cache: false
+l2: 0.0
+learning_rate: 0.001
+learning_rate_decay: 0.5
+load_dir: null
+loader: squad
+log_interval: 100
+loss: sum
+lowercase: false
+max_num_support: null
+max_span_size: 16
+max_support_length: -1
+min_learning_rate: 0.0001
+name: fastqa_reader
+num_dev_examples: null
+num_train_examples: null
+optimizer: adam
+output_dir: ./out/
+parent_config: [./conf/qa/fastqa.yaml, ./conf/qa/squad/abstract_squad.yaml]
+reader: fastqa_reader
+repr_dim: 150
+repr_dim_task_embedding: 0
+save_dir: /media/data2/jack_models/squad/fastqa
+seed: 1337
+tensorboard_folder: null
+test: null
+train: data/SQuAD/train-v1.1.json
+validation_interval: null
+vocab_from_embeddings: true
+with_char_embeddings: true
+write_metrics_to: null

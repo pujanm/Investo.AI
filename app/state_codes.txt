@@ -1,0 +1,52 @@
+State|Code
+California|00001
+Texas|00002
+New York|00003
+Florida|00004
+Illinois|00005
+Pennsylvania|00006
+Ohio|00007
+Michigan|00008
+Georgia|00009
+North Carolina|00010
+New Jersey|00011
+Virginia|00012
+Washington|00013
+Massachusetts|00014
+Indiana|00015
+Arizona|00016
+Tennessee|00017
+Missouri|00018
+Maryland|00019
+Wisconsin|00020
+Minnesota|00021
+Colorado|00022
+Alabama|00023
+South Carolina|00024
+Louisiana|00025
+Kentucky|00026
+Oregon|00027
+Oklahoma|00028
+Connecticut|00029
+Iowa|00030
+Mississippi|00031
+Arkansas|00032
+Utah|00033
+Nevada|00034
+New Mexico|00035
+West Virginia|00036
+Nebraska|00037
+Idaho|00038
+Hawaii|00039
+New Hampshire|00040
+Rhode Island|00041
+Montana|00042
+Delaware|00043
+South Dakota|00044
+Alaska|00045
+North Dakota|00046
+Vermont|00047
+District of Columbia|00048
+Kansas|00049
+Wyoming|00050
+Maine|00051

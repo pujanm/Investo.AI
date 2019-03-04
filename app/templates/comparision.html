@@ -1,0 +1,283 @@
+{% load staticfiles %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Overall Comparision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/icon/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/metisMenu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="{% static 'css/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'css/default-css.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- modernizr css -->
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+        var label = {{ labels|safe }};
+        var companies = {{ companies|safe }};
+        var stocks = {{ topic|safe }};
+        var profit = {{ profit|safe }};
+
+        console.log("Stocks: " + stocks);
+        console.log("Profits: ", profit);
+
+        // var data_arr = []
+        // var arr = []
+        // var indexes = []
+
+        // for(var i = 0; i < stocks.length; i++) {
+        //     // var len_actual = Math.floor((prediction[i].length * 0.75));
+        //     // var len_pred = prediction[i].length - len_actual;
+
+        //     var val = Math.floor(prediction[i].length - (0.2*prediction[i].length));
+        //     arr[i] = prediction[i].slice(i, val);
+        //     obj1 = {
+        //         data: arr[i],
+        //         label: stocks[i],
+        //         borderColor: "#3e95cd",
+        //         fill: false
+        //     };
+
+        //     obj2 = {
+        //         data: prediction[i],
+        //         label: stocks[i],
+        //         borderColor: "#8e5ea2",
+        //         fill: false
+        //     };
+
+        //     data_arr.push(obj1);
+        //     data_arr.push(obj2);
+
+        //     console.log(obj1);
+        //     console.log(obj2);
+        // }
+
+        // console.log("Data arr: " + data_arr);
+        // var c2 = ;
+        // var c3 = ;
+        // var c4 = ;
+        // var c5 = ;
+        // console.log(data1);
+        var data_arr = [];
+        for(var i = 0; i < stocks.length; i++) {
+            var data_obj = {
+                x: stocks[i],
+                y: profit[i],
+            };
+            data_arr.push(data_obj);
+        }
+        console.log("Data obj: ", data_arr);
+        new Chart(document.getElementById("line-chart"), {
+            type: 'bar',
+            data: {
+              labels: stocks,
+              datasets: [
+                {
+                  label: "Profit",
+                  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                  data: profit
+                }
+              ]
+            },
+            options: {
+                title: {
+                display: true,
+                text: 'Comparison of profit between stocks and gold'
+                }
+            }
+            });
+        };
+        function hello(){
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+            
+            for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight){
+                content.style.maxHeight = null;
+                } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                } 
+            });
+            }
+        }
+     </script>
+        
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h2 style="color: white;">INVESTO.AI</h2>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li>
+                                <a href="/" aria-expanded="true"><i class="ti-dashboard"></i><span>Portfolio</span></a>
+                            </li>
+                            <li>
+                                <a href="/stocks/" aria-expanded="true"><i class="ti-pie-chart"></i><span>Investments</span></a>
+                                <ul class="collapse">
+                                    <li><a href="/stocks/">Stocks</a></li>
+                                    <li><a href="/gold/">Gold</a></li>
+                                    <li><a href="/crypto/">Crypto Currencies</a></li>
+                                </ul>
+                            </li>
+                            <li  class="active">
+                                <a href="/comparision/"><i class="ti-search"></i><span>Comparision</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+          <!-- page title area start -->
+          <div class="page-title-area">
+              <div class="row align-items-center">
+                  <div class="col-sm-6">
+                      <div class="breadcrumbs-area clearfix">
+                          <h4 class="page-title pull-left">Final Comparision</h4>                      </div>
+                  </div>
+                  <div class="col-sm-6 clearfix">
+                      <div class="user-profile pull-right">
+                          <img class="avatar user-thumb" src="{% static 'images/author/avatar.png' %}" alt="avatar">
+                          <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ name }}<i class="fa fa-angle-down"></i></h4>
+                          <div class="dropdown-menu">
+                              <!-- <a class="dropdown-item" href="#">Message</a> -->
+                              <a class="dropdown-item" href="#">Settings</a>
+                              <a class="dropdown-item" href="#">Log Out</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          
+          <!-- page title area end -->
+            <!-- header area start -->
+              <div class="header-area">
+                <div class="row align-items-center">
+                  <!-- nav and search button -->
+                  <div class="col-md-12 col-sm-12 clearfix">
+                  </div>
+                </div>
+              </div>
+            <!-- header area end -->
+
+            <div class="card">
+                <div class="card-body">
+                        <div class="row">
+                            {% for i, j in articles.items %}
+                            <div class="col-lg-4 mt-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary btn-flat btn-lg mt-3" data-toggle="modal" data-target="#exampleModalLong_{{ i }}">{{ i }}</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalLong_{{ i }}">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title"></h5>
+                                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>{{ j }}</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                       <a href="/context_qa/{{ i }}"><button type="button" class="btn btn-primary">Go to QA</button></a> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content-inner">
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <canvas id="line-chart" width="800" height="450"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+        </div>
+        <!-- main content area end -->
+        <!-- footer area start-->
+        <footer>
+            <div class="footer-area">
+                <p>© Copyright 2019. All right reserved. <a href="">CodeSwappers</a>.</p>
+            </div>
+        </footer>
+        <!-- footer area end-->
+    </div>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <!-- bootstrap 4 js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/metisMenu.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+
+    <!-- start chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!-- start highcharts js -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- start zingchart js -->
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+    </script>
+    <!-- all line chart activation -->
+    <script src="{% static 'js/line-chart.js' %}"></script>
+    <!-- all pie chart -->
+    <script src="{% static 'js/pie-chart.js' %}"></script>
+    <!-- others plugins -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <!-- Google Map -->
+  	<script src="https://maps.googleapis.com/maps/api/js?keyAIzaSyCOoT83rvwanVDPzvlGyFu5vnHc-To02R8"></script>
+      <script src="{% static 'js/google_map.js' %}"></script>
+      <!-- <div class="modal-backdrop fade show"></div> -->
+</body>
+
+</html>

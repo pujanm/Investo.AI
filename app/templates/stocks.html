@@ -1,0 +1,384 @@
+{% load staticfiles %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Stocks Comparision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/icon/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/metisMenu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="{% static 'css/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'css/default-css.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- modernizr css -->
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+    <style>
+        form {
+            display:inline;
+            margin:0px;
+            padding:0px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function() {
+        var label = {{ labels|safe }};
+        // var companies = {{ companies|safe }};
+        var stocks_list = {{ topic|safe }};
+        // console.log("stocks: " + stocks_list);
+        var prediction = {{ predicted|safe }};
+        var indexes = {{ indexes|safe }};
+        var sentiment_categories = {{ sentiment_categories|safe }};
+        var publishers_sentiments = {{ publishers_sentiments|safe }};
+        var percent_overall = {{ percent_overall|safe }};
+        console.log(publishers_sentiments);
+
+        var arr = [];
+        var data_arr = [];
+        // for(var i=0; i < stocks_list.length; i++){
+        //     var val = Math.floor(indexes[i].length - (0.2*indexes[i].length));
+        //     arr[i] = prediction[i].slice(i, val);
+        //     obj1 = {
+        //         data: arr[i],
+        //         label: stocks_list[i],
+        //         borderColor: "#3e95cd",
+        //         fill: false
+        //     };
+
+        //     obj2 = {
+        //         data: prediction[i],
+        //         label: stocks_list[i],
+        //         borderColor: "#FF0000",
+        //         fill: false
+        //     };
+
+        //     data_arr.push(obj1);
+        //     data_arr.push(obj2);
+        // }
+        // new Chart(document.getElementById("line-chart"), {
+        //     type: 'line',
+        //     data: {
+        //         labels: indexes[0],
+        //         datasets: data_arr
+        //     },
+        //     options: {
+        //         title: {
+        //         display: true,
+        //         text: 'Price of stocks on various days'
+        //         }
+        //     }
+        //     });
+        
+        // var publication_list = {{ publishers_sentiments|safe }};
+            
+
+
+        for(var i=0; i < stocks_list.length; i++){
+            var a = "line-chart-" + stocks_list[i];
+            var bar_chart = "bar-chart-" + stocks_list[i];
+            var pie_chart = "pie-chart-twitter-" + stocks_list[i];
+            // console.log(a);
+            var val = Math.floor(indexes[i].length - (0.2*indexes[i].length));
+            // console.log(val);
+            var one = prediction[i].slice(i, val);
+            new Chart(document.getElementById(a), {
+            type: 'line',
+            data: {
+                labels: indexes[i],
+                datasets: [{ 
+                    data: one,
+                    label: stocks_list[i],
+                    borderColor: "#3e95cd",
+                    fill: false
+                },
+                { 
+                    data: prediction[i],
+                    label: stocks_list[i],
+                    borderColor: "#FF0000",
+                    fill: false
+                }
+                ]
+            },
+            options: {
+                title: {
+                display: true,
+                text: 'Price of stocks on various days'
+                }
+            }
+            });
+            // new Chart(document.getElementById(line_chart), {
+            // type: 'line',
+            // data: {
+            //     labels: indexes[i],
+            //     datasets: predicted[i]
+            // },
+            // options: {
+            //     title: {
+            //     display: true,
+            //     text: 'Price of Stocks for ' + topic[i]
+            //     }
+            // }
+            // });
+
+            var pub_lab = [], pub_data = [], pub_back = [];
+            for(var j = 0; j < publishers_sentiments[i].length; j++) {
+                console.log(publishers_sentiments[i][j][0]);
+              pub_lab.push(publishers_sentiments[i][j][0]);
+              pub_data.push(publishers_sentiments[i][j][1]);
+              pub_back.push("#5D6D" + j + "E");
+            }
+            // console.log("pl: " + pub_lab);
+            // console.log("pd: " + pub_data);
+            // console.log("pb: " + pub_back);
+            new Chart(document.getElementById(bar_chart), {
+                type: 'bar',
+                data: {
+                  labels: pub_lab,
+                  datasets: [
+                    {
+                      label: "Sentiment",
+                      backgroundColor: pub_back,
+                      data: pub_data
+                    }
+                  ]
+                },
+                options: {
+                  title: {
+                    display: true,
+                    text: 'Sentiment of topic grouped by different publications'
+                  }
+                }
+            });
+
+            new Chart(document.getElementById(pie_chart), {
+                type: 'pie',
+                data: {
+                  labels: ["Disagree", "Neutral", "Agree"],
+                  datasets: [{
+                    label: "Sentiments (percentage)",
+                    backgroundColor: ["#A235A", "#4A235A","#8E44AD"],
+                    data: percent_overall[i]
+                  }]
+                },
+                options: {
+                  title: {
+                    display: true,
+                    text: 'percentage distribution of over-all sentiments'
+                  }
+                }
+            // type: 'pie',
+            // data: {
+            //     labels: 'Tweets Analysis',
+            //     datasets: percent_overall[i]
+            // },
+            // options: {
+            //     title: {
+            //     display: true,
+            //     text: 'Sentiment distribution according to tweets'
+            //     }
+            // }
+            });
+        }
+
+        }
+     </script>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- preloader area end -->
+    <!-- page container area start -->
+    <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h2 style="color: white;">INVESTO.AI</h2>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li>
+                                <a href="/" aria-expanded="true"><i class="ti-dashboard"></i><span>Portfolio</span></a>
+                            </li>
+                            <li  class="active">
+                                <a href="/stocks/" aria-expanded="true"><i class="ti-pie-chart"></i><span>Investments</span></a>
+                                <ul class="collapse">
+                                    <li class="active"><a href="/stocks/">Stocks</a></li>
+                                    <li><a href="/gold/">Gold</a></li>
+                                    <li><a href="/crypto/">Crypto Currencies</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/comparision/"><i class="ti-search"></i><span>Comparision</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+            <!-- page title area start -->
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left">Stocks Comparision</h4>                      </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <img class="avatar user-thumb" src="{% static 'images/author/avatar.png' %}" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ name }}<i class="fa fa-angle-down"></i></h4>
+                            <div class="dropdown-menu">
+                                <!-- <a class="dropdown-item" href="#">Message</a> -->
+                                <a class="dropdown-item" href="#">Settings</a>
+                                <a class="dropdown-item" href="#">Log Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- page title area end -->
+            <!-- header area start -->
+            <div class="header-area">
+                <div class="row align-items-center">
+                <!-- nav and search button -->
+                <div class="col-md-12 col-sm-12 clearfix">
+                </div>
+                </div>
+            </div>
+            <!-- header area end -->
+            <div class="card">
+                <div class="card-body">
+                    <b style="font-size: 20px;">According to your risk quotient these are the predicted stocks</b>
+                </div>
+            </div>
+            {% for i in topic %} 
+            <div class="main-content-inner">
+                <div class="col-12 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <center>
+                                <h3>
+                                    <b>Stock name: {{ i }}</b> 
+                                    {% if i in client_stocks %}
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <input type="text" name="stock_{{ i }}" value="{{ i }}" hidden>
+                                            <input style="float: right;" type="submit" class="btn btn-primary" value="Selected">
+                                        </form>
+                                    {% else %}
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="text" name="stock_{{ i }}" value="{{ i }}" hidden>
+                                        <input style="float: right;" type="submit" class="btn btn-primary" value="Select">
+                                    </form>
+                                    {% endif %}
+                                    <!-- {% if i in client_stocks %}
+                                        <input type="text" name="stock_{{ i }}" value="{{ i }}" hidden>
+                                        <input style="float: right;" type="submit" class="btn btn-primary" value="Selected" id="selected_{{ i }}">
+                                    {% else %}
+                                        <input type="text" name="stock_{{ i }}" value="{{ i }}" hidden>
+                                        <input style="float: right;" type="submit" class="btn btn-primary" value="Select" id="select_{{ i }}">
+                                    {% endif %} -->
+                                
+                                </h3>
+                            </center>
+                
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 mt-5">
+                                    <div class="card card-bordered">
+                                        <div class="card-body">
+                                            <canvas id="line-chart-{{ i }}" width="800" height="450"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 mt-5">
+                                    <div class="card card-bordered">
+                                        <div class="card-body">
+                                            <canvas id="bar-chart-{{ i }}" width="800" height="450"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 mt-5">
+                                    <div class="card card-bordered">
+                                        <div class="card-body">
+                                            <!-- <h5 class="title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dicta.</h5>
+                                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia adipisci quidem, quam nam reiciendis facere blanditiis atque neque architecto omnis magni totam, voluptate maiores, iusto molestias incidunt unde nesciunt cum.
+                                            </p>
+                                            <a href="#" class="btn btn-primary">Go More....</a> -->
+                                            <canvas id="pie-chart-twitter-{{ i }}" width="800" height="450"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+        <!-- main content area end -->
+        <!-- footer area start-->
+        <footer>
+            <div class="footer-area">
+                <p>© Copyright 2019. All right reserved. <a href="">CodeSwappers</a>.</p>
+            </div>
+        </footer>
+        <!-- footer area end-->
+    </div>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <!-- bootstrap 4 js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/metisMenu.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+
+    <!-- start chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!-- start highcharts js -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- start zingchart js -->
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+    </script>
+    <!-- all line chart activation -->
+    <script src="{% static 'js/line-chart.js' %}"></script>
+    <!-- all pie chart -->
+    <script src="{% static 'js/pie-chart.js' %}"></script>
+    <!-- others plugins -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <!-- Google Map -->
+  	<script src="https://maps.googleapis.com/maps/api/js?keyAIzaSyCOoT83rvwanVDPzvlGyFu5vnHc-To02R8"></script>
+    <script src="{% static 'js/google_map.js' %}"></script>
+</body>
+
+</html>

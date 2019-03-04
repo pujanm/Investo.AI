@@ -1,0 +1,10 @@
+Litecoin was released via an open-source client on GitHub on October 7, 2011 by Charlie Lee, a Google employee and former Engineering Director at Coinbase.[3][4][5] The Litecoin network went live on October 13, 2011. It was a fork of the Bitcoin Core client, differing primarily by having a decreased block generation time (2.5 minutes), increased maximum number of coins, different hashing algorithm (scrypt, instead of SHA-256), and a slightly modified GUI.
+During the month of November 2013, the aggregate value of Litecoin experienced massive growth which included a 100% leap within 24 hours.[6]
+Litecoin reached a $1 billion market capitalization in November 2013.[7]
+In May 2017, Litecoin became the first of the top 5 (by market cap) cryptocurrencies to adopt Segregated Witness. Later in May of the same year, the first Lightning Network transaction was completed through Litecoin, transferring 0.00000001 LTC from Zürich to San Francisco in under one second.
+Differences from Bitcoin[edit]
+Litecoin is different in some ways from Bitcoin.
+The Litecoin Network aims to process a block every 2.5 minutes, rather than Bitcoin's 10 minutes. The developers claim that this allows Litecoin to have faster transaction confirmation.[8]
+Litecoin uses scrypt in its proof-of-work algorithm, a sequential memory-hard function requiring asymptotically more memory than an algorithm which is not memory-hard.
+Due to Litecoin's use of the scrypt algorithm, FPGA and ASIC devices made for mining Litecoin are more complicated to create and more expensive to produce than they are for Bitcoin, which uses SHA-256.
+

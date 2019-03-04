@@ -1,0 +1,707 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Politics Analytics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/icon/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/metisMenu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}">
+    <!-- amchart css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- others css -->
+    <link rel="stylesheet" href="{% static 'css/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'css/default-css.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- modernizr css -->
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js">
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            // var years = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
+            // var africa = [86,114,106,106,107,111,133,221,783,2478];
+            // var asia = [282,350,411,502,635,809,947,1402,3700,5267];
+            // var europe = [168,170,178,190,203,276,408,547,675,734];
+            // var latinAmerica = [40,20,10,16,24,38,74,167,508,784];
+            // var northAmerica = [6,3,2,2,7,26,82,172,312,433];
+            // var ctx = document.getElementById("myChart");
+            // var myChart = new Chart(ctx, {
+            //   type: 'line',
+            //   data: {
+            //     labels: years,
+            //     datasets: [
+            //       {
+            //         data: africa,
+            //         label: "Africa",
+            //         borderColor: "#3e95cd",
+            //         fill: false
+            //       },
+            //       {
+            //         data: asia,
+            //         label: "Asia",
+            //         borderColor: "#3e95cd",
+            //         fill: false
+            //       },
+            //       {
+            //         data: europe,
+            //         label: "Europe",
+            //         borderColor: "#3e95cd",
+            //         fill: false
+            //         },
+            //       {
+            //         data: latinAmerica,
+            //         label: "Latin America",
+            //         borderColor: "#3e95cd",
+            //         fill: false
+            //       },
+            //       {
+            //         data: northAmerica,
+            //         label: "North America",
+            //         borderColor: "#3e95cd",
+            //         fill: false
+            //       }
+            //     ]
+            //   }
+            // });
+            new Chart(document.getElementById("bar-chart-grouped-names"), {
+			    type: 'bar',
+			    data: {
+			      labels: ["06-02-2019", "07-02-2019", "08-02-2019", "09-02-2019"],
+			      datasets: [
+			        {
+			          label: "Narendra Modi",
+			          backgroundColor: "#145A32",
+			          data: [28, 32, 17, 24]
+			        }, {
+			          label: "Rahul Gandhi",
+			          backgroundColor: "#196F3D",
+			          data: [10, 25, 18, 15]
+			        },
+			        {
+			          label: "Mamta banerjee",
+			          backgroundColor: "#229954",
+			          data: [8, 4, 15, 18]
+			        }, {
+			          label: "Arvind Kejriwal",
+			          backgroundColor: "#7DCEA0",
+			          data: [12, 15, 5, 4]
+			        }
+			      ]
+			    },
+			    options: {
+			      title: {
+			        display: true,
+			        text: 'No. of tweets the person was tagged in (thousands)'
+			      }
+			    }
+			});
+			new Chart(document.getElementById("bar-chart-grouped-parties"), {
+			    type: 'bar',
+			    data: {
+			      labels: ["06-02-2019", "07-02-2019", "08-02-2019", "09-02-2019"],
+			      datasets: [
+			        {
+			          label: "BJP",
+			          backgroundColor: "#6E2C00",
+			          data: [200, 157, 130, 176]
+			        }, {
+			          label: "INC",
+			          backgroundColor: "#935116",
+			          data: [185, 165, 121, 190]
+			        },
+			        {
+			          label: "TMC",
+			          backgroundColor: "#B9770E",
+			          data: [30, 80, 10, 45]
+			        }, {
+			          label: "AAP",
+			          backgroundColor: "#D4AC0D",
+			          data: [17, 98, 59, 32]
+			        }
+			      ]
+			    },
+			    options: {
+			      title: {
+			        display: true,
+			        text: 'No. of tweets the party was tagged in (thousands)'
+			      }
+			    }
+			});
+        };
+
+    </script>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <div class="page-container">
+        <!-- sidebar menu area start -->
+        <div class="sidebar-menu">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h2 style="color: white;">SARKAR</h2>
+                </div>
+            </div>
+            <div class="main-menu">
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+                            <li>
+                                <a href="/" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
+                            </li>
+                            <!-- <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Sidebar
+                                        Types
+                                    </span></a>
+                                <ul class="collapse">
+                                    <li><a href="index.html">Left Sidebar</a></li>
+                                    <li><a href="index3-horizontalmenu.html">Horizontal Sidebar</a></li>
+                                </ul>
+                            </li> -->
+                            <!-- <li>
+                                <a href="/chart/" aria-expanded="true"><i class="ti-pie-chart"></i><span>Categories</span></a>
+                                <ul class="collapse">
+                                    <li><a href="/sports/">Sports</a></li>
+                                    <li><a href="/politics/">Politics</a></li>
+                                </ul>
+                            </li> -->
+                            <li  class="active">
+                                <a href="/chart/" aria-expanded="true"><i class="ti-pie-chart"></i><span>General Trends</span></a>
+                                <ul class="collapse">
+                                    <li><a href="/gen-sports/">Sports</a></li>
+                                    <li class="active"><a href="/gen-politics/">Politics</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/context_qa/"><i class="ti-search"></i><span>Context based Q & A</span></a>
+                            </li>
+                            <!-- <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>UI Features</span></a>
+                                <ul class="collapse">
+                                    <li><a href="accordion.html">Accordion</a></li>
+                                    <li><a href="alert.html">Alert</a></li>
+                                    <li><a href="badge.html">Badge</a></li>
+                                    <li><a href="button.html">Button</a></li>
+                                    <li><a href="button-group.html">Button Group</a></li>
+                                    <li><a href="cards.html">Cards</a></li>
+                                    <li><a href="dropdown.html">Dropdown</a></li>
+                                    <li><a href="list-group.html">List Group</a></li>
+                                    <li><a href="media-object.html">Media Object</a></li>
+                                    <li><a href="modal.html">Modal</a></li>
+                                    <li><a href="pagination.html">Pagination</a></li>
+                                    <li><a href="popovers.html">Popover</a></li>
+                                    <li><a href="progressbar.html">Progressbar</a></li>
+                                    <li><a href="tab.html">Tab</a></li>
+                                    <li><a href="typography.html">Typography</a></li>
+                                    <li><a href="form.html">Form</a></li>
+                                    <li><a href="grid.html">grid system</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-slice"></i><span>icons</span></a>
+                                <ul class="collapse">
+                                    <li><a href="fontawesome.html">fontawesome icons</a></li>
+                                    <li><a href="themify.html">themify icons</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-table"></i>
+                                    <span>Tables</span></a>
+                                <ul class="collapse">
+                                    <li><a href="table-basic.html">basic table</a></li>
+                                    <li><a href="table-layout.html">table layout</a></li>
+                                    <li><a href="datatable.html">datatable</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="maps.html"><i class="ti-map-alt"></i> <span>maps</span></a></li>
+                            <li><a href="invoice.html"><i class="ti-receipt"></i> <span>Invoice Summary</span></a></li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layers-alt"></i> <span>Pages</span></a>
+                                <ul class="collapse">
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="login2.html">Login 2</a></li>
+                                    <li><a href="login3.html">Login 3</a></li>
+                                    <li><a href="register.html">Register</a></li>
+                                    <li><a href="register2.html">Register 2</a></li>
+                                    <li><a href="register3.html">Register 3</a></li>
+                                    <li><a href="register4.html">Register 4</a></li>
+                                    <li><a href="screenlock.html">Lock Screen</a></li>
+                                    <li><a href="screenlock2.html">Lock Screen 2</a></li>
+                                    <li><a href="reset-pass.html">reset password</a></li>
+                                    <li><a href="pricing.html">Pricing</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-exclamation-triangle"></i>
+                                    <span>Error</span></a>
+                                <ul class="collapse">
+                                    <li><a href="404.html">Error 404</a></li>
+                                    <li><a href="403.html">Error 403</a></li>
+                                    <li><a href="500.html">Error 500</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-align-left"></i> <span>Multi
+                                        level menu</span></a>
+                                <ul class="collapse">
+                                    <li><a href="#">Item level (1)</a></li>
+                                    <li><a href="#">Item level (1)</a></li>
+                                    <li><a href="#" aria-expanded="true">Item level (1)</a>
+                                        <ul class="collapse">
+                                            <li><a href="#">Item level (2)</a></li>
+                                            <li><a href="#">Item level (2)</a></li>
+                                            <li><a href="#">Item level (2)</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Item level (1)</a></li>
+                                </ul>
+                            </li> -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- sidebar menu area end -->
+        <!-- main content area start -->
+        <div class="main-content">
+            <!-- header area start -->
+            <!-- header area end -->
+            <!-- page title area start -->
+            <div class="page-title-area">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="breadcrumbs-area clearfix">
+                            <h4 class="page-title pull-left">Political Analytics</h4>
+                            <!-- <ul class="breadcrumbs pull-left">
+                                <li><a href="index.html">Home</a></li>
+                                <li><span>Line Chart</span></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="col-sm-6 clearfix">
+                        <div class="user-profile pull-right">
+                            <img class="avatar user-thumb" src="{% static 'images/author/avatar.png' %}" alt="avatar">
+                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Pujan Mehta <i class="fa fa-angle-down"></i></h4>
+                            <div class="dropdown-menu">
+                                <!-- <a class="dropdown-item" href="#">Message</a> -->
+                                <a class="dropdown-item" href="#">Settings</a>
+                                <a class="dropdown-item" href="#">Log Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- page title area end -->
+            <div class="main-content-inner">
+                <!-- line chart start -->
+                <div class="row">
+                	<!-- <br>
+                	<div class="card" style="position: relative;right: 0;left: 0;top: 59px;
+    margin: auto; ">
+                        <div class="card-body">
+                            <canvas id="bar-chart-grouped"></canvas>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- <div id="amlinechart1"></div> -->
+                                <canvas id="bar-chart-grouped-names"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- <div id="amlinechart1"></div> -->
+                                <canvas id="bar-chart-grouped-parties"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- <div id="amlinechart1"></div> -->
+                                <canvas id="bar-chart-grouped"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="amlinechart2"></div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="amlinechart3"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="amlinechart4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="amlinechart5"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="verview-shart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="ambarchart6"></div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- ------------------ -->
+                    <!-- <div class="col-lg-6 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                               <canvas id="myChart" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- line chart end -->
+            </div>
+        </div>
+        <!-- main content area end -->
+        <!-- footer area start-->
+        <footer>
+            <div class="footer-area">
+                <p>© Copyright 2019. All right reserved. Template by <a href="">CodeSwappers</a>.</p>
+            </div>
+        </footer>
+        <!-- footer area end-->
+    </div>
+    <!-- page container area end -->
+    <!-- offset area start -->
+    <div class="offset-area">
+        <div class="offset-close"><i class="ti-close"></i></div>
+        <ul class="nav offset-menu-tab">
+            <li><a class="active" data-toggle="tab" href="#activity">Activity</a></li>
+            <li><a data-toggle="tab" href="#settings">Settings</a></li>
+        </ul>
+        <div class="offset-content tab-content">
+            <div id="activity" class="tab-pane fade in show active">
+                <div class="recent-activity">
+                    <div class="timeline-task">
+                        <div class="icon bg1">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Rashed sent you an email</h4>
+                            <span class="time"><i class="ti-time"></i>09:35</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                        </p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg2">
+                            <i class="fa fa-check"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Added</h4>
+                            <span class="time"><i class="ti-time"></i>7 Minutes Ago</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur.
+                        </p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg2">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>You missed you Password!</h4>
+                            <span class="time"><i class="ti-time"></i>09:20 Am</span>
+                        </div>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg3">
+                            <i class="fa fa-bomb"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Member waiting for you Attention</h4>
+                            <span class="time"><i class="ti-time"></i>09:35</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                        </p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg3">
+                            <i class="ti-signal"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>You Added Kaji Patha few minutes ago</h4>
+                            <span class="time"><i class="ti-time"></i>01 minutes ago</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                        </p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg1">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Ratul Hamba sent you an email</h4>
+                            <span class="time"><i class="ti-time"></i>09:35</span>
+                        </div>
+                        <p>Hello sir , where are you, i am egerly waiting for you.
+                        </p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg2">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Rashed sent you an email</h4>
+                            <span class="time"><i class="ti-time"></i>09:35</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                        </p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg2">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Rashed sent you an email</h4>
+                            <span class="time"><i class="ti-time"></i>09:35</span>
+                        </div>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg3">
+                            <i class="fa fa-bomb"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Rashed sent you an email</h4>
+                            <span class="time"><i class="ti-time"></i>09:35</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                        </p>
+                    </div>
+                    <div class="timeline-task">
+                        <div class="icon bg3">
+                            <i class="ti-signal"></i>
+                        </div>
+                        <div class="tm-title">
+                            <h4>Rashed sent you an email</h4>
+                            <span class="time"><i class="ti-time"></i>09:35</span>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="settings" class="tab-pane fade">
+                <div class="offset-settings">
+                    <h4>General Settings</h4>
+                    <div class="settings-list">
+                        <div class="s-settings">
+                            <div class="s-sw-title">
+                                <h5>Notifications</h5>
+                                <div class="s-swtich">
+                                    <input type="checkbox" id="switch1" />
+                                    <label for="switch1">Toggle</label>
+                                </div>
+                            </div>
+                            <p>Keep it 'On' When you want to get all the notification.</p>
+                        </div>
+                        <div class="s-settings">
+                            <div class="s-sw-title">
+                                <h5>Show recent activity</h5>
+                                <div class="s-swtich">
+                                    <input type="checkbox" id="switch2" />
+                                    <label for="switch2">Toggle</label>
+                                </div>
+                            </div>
+                            <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
+                        </div>
+                        <div class="s-settings">
+                            <div class="s-sw-title">
+                                <h5>Show your emails</h5>
+                                <div class="s-swtich">
+                                    <input type="checkbox" id="switch3" />
+                                    <label for="switch3">Toggle</label>
+                                </div>
+                            </div>
+                            <p>Show email so that easily find you.</p>
+                        </div>
+                        <div class="s-settings">
+                            <div class="s-sw-title">
+                                <h5>Show Task statistics</h5>
+                                <div class="s-swtich">
+                                    <input type="checkbox" id="switch4" />
+                                    <label for="switch4">Toggle</label>
+                                </div>
+                            </div>
+                            <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
+                        </div>
+                        <div class="s-settings">
+                            <div class="s-sw-title">
+                                <h5>Notifications</h5>
+                                <div class="s-swtich">
+                                    <input type="checkbox" id="switch5" />
+                                    <label for="switch5">Toggle</label>
+                                </div>
+                            </div>
+                            <p>Use checkboxes when looking for yes or no answers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- offset area end -->
+    <!-- jquery latest version -->
+    <script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <!-- bootstrap 4 js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/metisMenu.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slimscroll.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+
+    <!-- start chart js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <!-- start highcharts js -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <!-- start zingchart js -->
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script>
+        zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+        ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+    </script>
+    <script type="text/javascript">
+
+        if ($('#ambarchart4').length) {
+        var chart = AmCharts.makeChart("ambarchart4", {
+            "type": "serial",
+            "theme": "light",
+            "marginRight": 70,
+            "dataProvider": [{
+                "country": "USA",
+                "visits": 3025,
+                "color": "#8918FE"
+            }, {
+                "country": "China",
+                "visits": 1882,
+                "color": "#7474F0"
+            }, {
+                "country": "Japan",
+                "visits": 1809,
+                "color": "#C5C5FD"
+            }, {
+                "country": "Germany",
+                "visits": 1322,
+                "color": "#952FFE"
+            }, {
+                "country": "UK",
+                "visits": 1122,
+                "color": "#7474F0"
+            }, {
+                "country": "France",
+                "visits": 1114,
+                "color": "#CBCBFD"
+            }, {
+                "country": "India",
+                "visits": 984,
+                "color": "#FD9C21"
+            }, {
+                "country": "Spain",
+                "visits": 711,
+                "color": "#0D8ECF"
+            }, {
+                "country": "Netherlands",
+                "visits": 665,
+                "color": "#0D52D1"
+            }, {
+                "country": "Russia",
+                "visits": 580,
+                "color": "#2A0CD0"
+            }, {
+                "country": "South Korea",
+                "visits": 443,
+                "color": "#8A0CCF"
+            }, {
+                "country": "Canada",
+                "visits": 441,
+                "color": "#9F43FE"
+            }],
+            "valueAxes": [{
+                "axisAlpha": 0,
+                "position": "left",
+                "title": false
+            }],
+            "startDuration": 1,
+            "graphs": [{
+                "balloonText": "<b>[[category]]: [[value]]</b>",
+                "fillColorsField": "color",
+                "fillAlphas": 0.9,
+                "lineAlpha": 0.2,
+                "type": "column",
+                "valueField": "visits"
+            }],
+            "chartCursor": {
+                "categoryBalloonEnabled": false,
+                "cursorAlpha": 0,
+                "zoomable": false
+            },
+            "categoryField": "country",
+            "categoryAxis": {
+                "gridPosition": "start",
+                "labelRotation": 45
+            },
+            "export": {
+                "enabled": false
+            }
+
+        });
+}
+    </script>
+    <!-- start amchart js -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <!-- all line chart activation -->
+    <script src="{% static 'js/line-chart.js' %}"></script>
+    <!-- all bar chart activation -->
+    <script src="{% static 'js/bar-chart.js' %}"></script>
+    <!-- all pie chart -->
+    <script src="{% static 'js/pie-chart.js' %}"></script>
+    <!-- others plugins -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+
+</html>

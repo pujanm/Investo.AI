@@ -1,0 +1,12 @@
+Ether is different from Bitcoin (the cryptocurrency with the largest market capitalization as of June 2018) in several aspects:
+Its block time is 14 to 15 seconds, compared with 10 minutes for bitcoin.
+Mining of ether generates new coins at a usually consistent rate, occasionally changing during hard forks, while for bitcoin the rate halves every 4 years.
+For proof-of-work, it uses the Ethash algorithm which reduces the advantage of specialized ASICs in mining.
+Transaction fees differ by computational complexity, bandwidth use and storage needs (in a system known as gas), while bitcoin transactions compete by means of transaction size, in bytes.
+Ethereum gas units each have a price that can be specified in a transaction. This is typically measured in Gwei. Bitcoin transactions usually have fees specified in satoshis per byte.
+Transaction fees are generally considerably lower for ether than for Bitcoin. In December 2017, the median transaction fee for ether corresponded to $0.33, while for bitcoin it corresponded to $23.
+Ethereum uses an account system where values in Wei are debited from accounts and credited to another, as opposed to Bitcoin's UTXO system, which is more analogous to spending cash and receiving change in return.
+Supply[edit]
+The total supply of ether was Ξ100 million as of June 2018. In 2017, mining generated 9.2 million new ether, corresponding to a 10% increase in its total supply. Casper FFG and CBC are expected to reduce the inflation rate to between 0.5% to 2%. There is no currently implemented hard cap on the total supply of ETH.
+Markets and stores[edit]
+Ether can be traded by regular currency brokers, cryptocurrency exchanges, as well as many online cryptocurrency wallets.[36]

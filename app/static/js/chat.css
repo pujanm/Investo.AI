@@ -1,0 +1,104 @@
+.body {
+    position: relative;
+}
+.chatHeader {
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 2px 6px 0px #00000038;
+    position: sticky;
+    top: 0;
+    width: 40%;
+    margin: 0 auto;
+    z-index: 10;
+}
+.chatHeader .col-xs-12 {
+    display: inline-block;
+}
+.fa-angle-left{
+    font-size: 1.5rem;
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 10px;
+    color: #00000099;
+}
+.chatHeader .chatProfilePic {
+    height: auto;
+    width: 40px;
+    border-radius: 20px;
+    margin-right: 20px;
+}
+.chatName {
+    font-size: 1.25rem;
+    vertical-align: middle;
+    font-weight: bold;
+    color:
+}
+.chatBody {
+    margin-top: 10px;
+    margin-bottom: 10%;
+}
+.messageSent {
+    width: 51%;
+    background-color: #3f39bf;
+    border-radius: 10px;
+    float: right;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #f8f9fa;
+}
+.messageReceived {
+    width: 51%;
+    background-color: #dee2e6;
+    border-radius: 10px;
+    float: left;
+    margin-left: 0px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #212529;
+}
+.latestMsg {
+    margin-bottom: 30px;
+}
+.messageText {
+    margin: 3px 5px 3px 5px;
+}
+.messageTime {
+    font-size: 11px;
+    margin-left: 5px;
+}
+.chatFooter{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    z-index: 9;
+}
+.form-row .col-2 {
+    text-align: center;
+}
+.form-row .col-2 button {
+    vertical-align: middle;
+    width: 100%;
+    background-color: #3f39bf;
+    border-color: #3f39bf;
+}
+@media only screen and (max-width: 600px) {
+    .chatHeader {
+        padding: 10px;
+    }
+    .chatHeader .chatProfilePic {
+        margin-right: 15px;
+    }
+    .chatName {
+        font-size: 1.15rem;
+    }
+    .messageSent {
+        width: 80%;
+    }
+    .messageReceived {
+        width: 80%;
+    }
+}
