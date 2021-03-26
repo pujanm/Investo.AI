@@ -54,7 +54,7 @@ pytest-pep8==1.0.6
 pytest-runner==4.2
 pytest-xdist==1.26.1
 python-utils==2.3.0
-PyYAML==3.13
+PyYAML==5.4
 regex==2017.11.9
 requests==2.21.0
 requests-oauthlib==1.2.0
