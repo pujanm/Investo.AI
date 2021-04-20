@@ -44,7 +44,7 @@ preshed==1.0.1
 progressbar==2.5
 progressbar2==3.39.2
 protobuf==3.6.1
-py==1.7.0
+py==1.10.0
 PySocks==1.6.8
 pytest==4.2.0
 pytest-cache==1.0
