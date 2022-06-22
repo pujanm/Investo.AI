@@ -33,7 +33,7 @@ munch==2.3.2
 murmurhash==0.26.4
 newsapi-python==0.2.3
 nltk==3.4
-numpy==1.16.1
+numpy==1.22.0
 oauthlib==3.0.1
 parse==1.11.1
 pathlib==1.0.1
