@@ -68,7 +68,7 @@ soupsieve==1.7.3
 spacy==1.9.0
 SQLAlchemy==1.2.17
 tensorboard==1.8.0
-tensorflow==1.8.0
+tensorflow==2.9.3
 termcolor==1.1.0
 textblob==0.15.2
 thinc==6.5.2
